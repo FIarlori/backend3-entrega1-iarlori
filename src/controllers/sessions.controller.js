@@ -76,9 +76,9 @@ const login = async (req, res) => {
     const token = jwt.sign(userDto, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
     
     res.cookie('coderCookie', token, { 
-        maxAge: 3600000, 
+        maxAge: 3600000,
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: process.env.NODE_ENV === 'development',
         signed: true
     }).send({ 
         status: "success", 
@@ -147,7 +147,7 @@ const unprotectedLogin = async (req, res) => {
     res.cookie('unprotectedCookie', token, { 
         maxAge: 3600000,
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production'
+        secure: process.env.NODE_ENV === 'development'
     }).send({ 
         status: "success", 
         message: "Unprotected Logged in" 

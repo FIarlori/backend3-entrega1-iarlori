@@ -1,0 +1,354 @@
+{
+  "info": {
+    "_postman_id": "backend-iii-entrega-1",
+    "name": "Backend III - Entrega 1",
+    "description": "Colección para probar la primera entrega del curso Backend III",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "🏠 HEALTH CHECK",
+      "item": [
+        {
+          "name": "GET Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["health"]
+            },
+            "description": "Verifica estado del servidor y conexión a MongoDB"
+          },
+          "response": []
+        },
+        {
+          "name": "GET Home",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": [""]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🎯 ENTREGA 1 - MOCKING",
+      "item": [
+        {
+          "name": "GET Mocking Users (50 por defecto)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/mocks/mockingusers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "mocks", "mockingusers"]
+            },
+            "description": "Genera 50 usuarios mock con contraseña 'coder123' encriptada"
+          },
+          "response": []
+        },
+        {
+          "name": "GET Mocking Users (con parámetro)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/mocks/mockingusers?count=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "mocks", "mockingusers"],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Genera N usuarios mock (ej: 10)"
+          },
+          "response": []
+        },
+        {
+          "name": "GET Mocking Pets (100 por defecto)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/mocks/mockingpets",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "mocks", "mockingpets"]
+            },
+            "description": "Genera 100 mascotas mock"
+          },
+          "response": []
+        },
+        {
+          "name": "GET Mocking Pets (con parámetro)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/mocks/mockingpets?count=5",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "mocks", "mockingpets"],
+              "query": [
+                {
+                  "key": "count",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Genera N mascotas mock (ej: 5)"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Generate & Insert Data",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"users\": 3,\n  \"pets\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/mocks/generateData",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "mocks", "generateData"]
+            },
+            "description": "Inserta usuarios y mascotas mock en la base de datos"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "👥 USERS",
+      "item": [
+        {
+          "name": "GET All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/users",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "users"]
+            },
+            "description": "Lista todos los usuarios (para verificar inserción de mocks)"
+          },
+          "response": []
+        },
+        {
+          "name": "GET User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/users/{{user_id}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "users", "{{user_id}}"],
+              "variable": [
+                {
+                  "key": "user_id",
+                  "value": "ID_DEL_USUARIO"
+                }
+              ]
+            },
+            "description": "Obtiene un usuario específico por ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🐾 PETS",
+      "item": [
+        {
+          "name": "GET All Pets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/pets",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "pets"]
+            },
+            "description": "Lista todas las mascotas (para verificar inserción de mocks)"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Create Pet",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Firulais\",\n  \"specie\": \"perro\",\n  \"birthDate\": \"2020-01-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/pets",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "pets"]
+            },
+            "description": "Crea una nueva mascota"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "🔐 SESSIONS",
+      "item": [
+        {
+          "name": "POST Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Juan\",\n  \"last_name\": \"Perez\",\n  \"email\": \"juan@example.com\",\n  \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/sessions/register",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "sessions", "register"]
+            },
+            "description": "Registra un nuevo usuario"
+          },
+          "response": []
+        },
+        {
+          "name": "POST Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"juan@example.com\",\n  \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/sessions/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "sessions", "login"]
+            },
+            "description": "Inicia sesión (crea cookie)"
+          },
+          "response": []
+        },
+        {
+          "name": "GET Current",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/sessions/current",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "sessions", "current"]
+            },
+            "description": "Obtiene usuario actual (requiere cookie)"
+          },
+          "response": []
+        },
+        {
+          "name": "GET Logout",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/sessions/logout",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "sessions", "logout"]
+            },
+            "description": "Cierra sesión (elimina cookie)"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080"
+    }
+  ]
+}

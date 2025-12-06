@@ -13,18 +13,7 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 const NODE_ENV = process.env.NODE_ENV || 'development';
-
-let MONGO_URL;
-switch (NODE_ENV) {
-    case 'test':
-        MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/backend_coder_test';
-        break;
-    case 'production':
-        MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/backend_coder_prod';
-        break;
-    default: 
-        MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/backend_coder';
-}
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/backend_coder';
 
 console.log(`🌍 Entorno: ${NODE_ENV}`);
 console.log(`🔗 MongoDB: ${MONGO_URL}`);

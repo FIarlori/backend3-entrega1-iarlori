@@ -8,10 +8,10 @@ const mockingController = {
         try {
             const count = parseInt(req.query.count) || 100;
             
-            if (NODE_ENV === 'production' && count > 100) {
+            if (count > 1000) {
                 return res.status(400).send({
                     status: 'error',
-                    error: 'Cannot generate more than 100 pets in production'
+                    error: 'Cannot generate more than 1000 pets'
                 });
             }
             
@@ -35,10 +35,10 @@ const mockingController = {
         try {
             const count = parseInt(req.query.count) || 50;
             
-            if (NODE_ENV === 'production' && count > 50) {
+            if (count > 500) {
                 return res.status(400).send({
                     status: 'error',
-                    error: 'Cannot generate more than 50 users in production'
+                    error: 'Cannot generate more than 500 users'
                 });
             }
             
@@ -62,13 +62,6 @@ const mockingController = {
     generateAndInsertData: async (req, res) => {
         try {
             const { users: usersCount = 0, pets: petsCount = 0 } = req.body;
-            
-            if (NODE_ENV === 'production') {
-                return res.status(403).send({
-                    status: 'error',
-                    error: 'This endpoint is disabled in production environment'
-                });
-            }
             
             if (usersCount === 0 && petsCount === 0) {
                 return res.status(400).send({

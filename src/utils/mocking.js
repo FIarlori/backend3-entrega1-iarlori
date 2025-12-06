@@ -1,13 +1,12 @@
 import bcrypt from 'bcrypt';
 import { faker } from '@faker-js/faker';
-import { createHash } from './index.js';
 
 class Mocking {
     static async generateUsers(count = 50) {
         try {
             const users = [];
-            const encryptedPassword = await createHash('coder123');
-            
+            const encryptedPassword = await bcrypt.hash('coder123', 10);
+
             for (let i = 0; i < count; i++) {
                 const user = {
                     _id: faker.database.mongodbObjectId(),
@@ -15,17 +14,17 @@ class Mocking {
                     last_name: faker.person.lastName(),
                     email: faker.internet.email(),
                     password: encryptedPassword,
-                    role: faker.helpers.arrayElement(['user', 'admin']),
+                    role: Math.random() > 0.5 ? 'user' : 'admin',
                     pets: [],
-                    createdAt: faker.date.recent(),
-                    updatedAt: faker.date.recent()
+                    createdAt: new Date(),
+                    updatedAt: new Date()
                 };
                 users.push(user);
             }
             
             return users;
         } catch (error) {
-            throw new Error(`Error generating mock users: ${error.message}`);
+            throw new Error('Error generating users: ' + error.message);
         }
     }
 
@@ -37,13 +36,13 @@ class Mocking {
             const pet = {
                 _id: faker.database.mongodbObjectId(),
                 name: faker.person.firstName(),
-                specie: faker.helpers.arrayElement(species),
+                specie: species[Math.floor(Math.random() * species.length)],
                 birthDate: faker.date.past({ years: 10 }),
-                adopted: faker.datatype.boolean(),
-                owner: faker.datatype.boolean() ? faker.database.mongodbObjectId() : null,
-                image: faker.image.url(),
-                createdAt: faker.date.recent(),
-                updatedAt: faker.date.recent()
+                adopted: false,
+                owner: null,
+                image: faker.image.urlLoremFlickr({ category: 'animals' }),
+                createdAt: new Date(),
+                updatedAt: new Date()
             };
             pets.push(pet);
         }
