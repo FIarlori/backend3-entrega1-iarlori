@@ -1,0 +1,42 @@
+{
+  "name": "plantilladocumentacion",
+  "version": "1.0.0",
+  "description": "Backend III - Testing y Escalabilidad",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "NODE_ENV=production node src/app.js",
+    "dev": "NODE_ENV=development nodemon src/app.js",
+    "test": "NODE_ENV=test mocha test/**/*.test.js --exit --timeout 10000",
+    "test:watch": "NODE_ENV=test mocha test/**/*.test.js --watch --exit",
+    "db:reset": "NODE_ENV=test node scripts/reset-test-db.js",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix"
+  },
+  "keywords": [
+    "backend",
+    "testing",
+    "mongodb",
+    "express",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.5",
+    "multer": "^1.4.5-lts.1",
+    "supertest": "^6.3.3"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "eslint": "^8.30.0",
+    "mocha": "^10.1.0",
+    "nodemon": "^2.0.20"
+  }
+}
