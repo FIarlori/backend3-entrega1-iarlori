@@ -15,6 +15,8 @@ const PORT = process.env.PORT || 8080;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/backend_coder';
 
+mongoose.set('strictQuery', false);
+
 console.log(`🌍 Entorno: ${NODE_ENV}`);
 console.log(`🔗 MongoDB: ${MONGO_URL}`);
 

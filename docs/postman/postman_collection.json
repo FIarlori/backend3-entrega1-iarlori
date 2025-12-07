@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "backend-iii-entrega-1",
     "name": "Backend III - Entrega 1",
-    "description": "Colección para probar la primera entrega del curso Backend III",
+    "description": "Colección completa CORREGIDA - URLs bien estructuradas",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -15,15 +15,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/health",
+              "raw": "{{base_url}}/health",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": ["health"]
             },
             "description": "Verifica estado del servidor y conexión a MongoDB"
-          },
-          "response": []
+          }
         },
         {
           "name": "GET Home",
@@ -31,14 +30,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/",
+              "raw": "{{base_url}}/",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": [""]
-            }
-          },
-          "response": []
+            },
+            "description": "Página principal con información de endpoints"
+          }
         }
       ]
     },
@@ -51,15 +50,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/mocks/mockingusers",
+              "raw": "{{base_url}}/api/mocks/mockingusers",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": ["api", "mocks", "mockingusers"]
             },
             "description": "Genera 50 usuarios mock con contraseña 'coder123' encriptada"
-          },
-          "response": []
+          }
         },
         {
           "name": "GET Mocking Users (con parámetro)",
@@ -67,7 +65,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/mocks/mockingusers?count=10",
+              "raw": "{{base_url}}/api/mocks/mockingusers?count=10",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
@@ -80,8 +78,7 @@
               ]
             },
             "description": "Genera N usuarios mock (ej: 10)"
-          },
-          "response": []
+          }
         },
         {
           "name": "GET Mocking Pets (100 por defecto)",
@@ -89,15 +86,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/mocks/mockingpets",
+              "raw": "{{base_url}}/api/mocks/mockingpets",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": ["api", "mocks", "mockingpets"]
             },
             "description": "Genera 100 mascotas mock"
-          },
-          "response": []
+          }
         },
         {
           "name": "GET Mocking Pets (con parámetro)",
@@ -105,7 +101,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/mocks/mockingpets?count=5",
+              "raw": "{{base_url}}/api/mocks/mockingpets?count=5",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
@@ -118,8 +114,7 @@
               ]
             },
             "description": "Genera N mascotas mock (ej: 5)"
-          },
-          "response": []
+          }
         },
         {
           "name": "POST Generate & Insert Data",
@@ -141,15 +136,14 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/mocks/generateData",
+              "raw": "{{base_url}}/api/mocks/generateData",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": ["api", "mocks", "generateData"]
             },
             "description": "Inserta usuarios y mascotas mock en la base de datos"
-          },
-          "response": []
+          }
         }
       ]
     },
@@ -162,15 +156,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/users",
+              "raw": "{{base_url}}/api/users",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": ["api", "users"]
             },
             "description": "Lista todos los usuarios (para verificar inserción de mocks)"
-          },
-          "response": []
+          }
         },
         {
           "name": "GET User by ID",
@@ -178,7 +171,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/users/{{user_id}}",
+              "raw": "{{base_url}}/api/users/{{user_id}}",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
@@ -186,13 +179,68 @@
               "variable": [
                 {
                   "key": "user_id",
-                  "value": "ID_DEL_USUARIO"
+                  "value": ""
                 }
               ]
             },
-            "description": "Obtiene un usuario específico por ID"
-          },
-          "response": []
+            "description": "Obtiene un usuario específico por ID. Usar ID real obtenido de GET All Users"
+          }
+        },
+        {
+          "name": "PUT Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Nombre Actualizado\",\n  \"last_name\": \"Apellido Actualizado\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/{{user_id}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "users", "{{user_id}}"],
+              "variable": [
+                {
+                  "key": "user_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Actualiza un usuario existente"
+          }
+        },
+        {
+          "name": "DELETE User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/{{user_id}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "users", "{{user_id}}"],
+              "variable": [
+                {
+                  "key": "user_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Elimina un usuario (usar con cuidado)"
+          }
         }
       ]
     },
@@ -205,15 +253,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/pets",
+              "raw": "{{base_url}}/api/pets",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": ["api", "pets"]
             },
             "description": "Lista todas las mascotas (para verificar inserción de mocks)"
-          },
-          "response": []
+          }
         },
         {
           "name": "POST Create Pet",
@@ -235,15 +282,136 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/pets",
+              "raw": "{{base_url}}/api/pets",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": ["api", "pets"]
             },
             "description": "Crea una nueva mascota"
-          },
-          "response": []
+          }
+        },
+        {
+          "name": "PUT Update Pet",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nuevo Nombre\",\n  \"adopted\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/pets/{{pet_id}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "pets", "{{pet_id}}"],
+              "variable": [
+                {
+                  "key": "pet_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Actualiza una mascota existente"
+          }
+        },
+        {
+          "name": "DELETE Pet",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/pets/{{pet_id}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "pets", "{{pet_id}}"],
+              "variable": [
+                {
+                  "key": "pet_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Elimina una mascota"
+          }
+        }
+      ]
+    },
+    {
+      "name": "🏡 ADOPTIONS",
+      "item": [
+        {
+          "name": "GET All Adoptions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/adoptions",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "adoptions"]
+            },
+            "description": "Lista todas las adopciones"
+          }
+        },
+        {
+          "name": "GET Adoption by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/adoptions/{{adoption_id}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "adoptions", "{{adoption_id}}"],
+              "variable": [
+                {
+                  "key": "adoption_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Obtiene una adopción específica por ID"
+          }
+        },
+        {
+          "name": "POST Create Adoption",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/adoptions/{{user_id}}/{{pet_id}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "adoptions", "{{user_id}}", "{{pet_id}}"],
+              "variable": [
+                {
+                  "key": "user_id",
+                  "value": ""
+                },
+                {
+                  "key": "pet_id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Crea una nueva adopción (usuario adopta mascota). Necesita IDs válidos de usuario y mascota."
+          }
         }
       ]
     },
@@ -270,15 +438,14 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/sessions/register",
+              "raw": "{{base_url}}/api/sessions/register",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": ["api", "sessions", "register"]
             },
             "description": "Registra un nuevo usuario"
-          },
-          "response": []
+          }
         },
         {
           "name": "POST Login",
@@ -300,15 +467,14 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/sessions/login",
+              "raw": "{{base_url}}/api/sessions/login",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": ["api", "sessions", "login"]
             },
             "description": "Inicia sesión (crea cookie)"
-          },
-          "response": []
+          }
         },
         {
           "name": "GET Current",
@@ -316,15 +482,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/sessions/current",
+              "raw": "{{base_url}}/api/sessions/current",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": ["api", "sessions", "current"]
             },
-            "description": "Obtiene usuario actual (requiere cookie)"
-          },
-          "response": []
+            "description": "Obtiene usuario actual (requiere cookie de login)"
+          }
         },
         {
           "name": "GET Logout",
@@ -332,15 +497,58 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8080/api/sessions/logout",
+              "raw": "{{base_url}}/api/sessions/logout",
               "protocol": "http",
               "host": ["localhost"],
               "port": "8080",
               "path": ["api", "sessions", "logout"]
             },
             "description": "Cierra sesión (elimina cookie)"
-          },
-          "response": []
+          }
+        },
+        {
+          "name": "POST Unprotected Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"juan@example.com\",\n  \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/sessions/unprotectedLogin",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "sessions", "unprotectedLogin"]
+            },
+            "description": "Login sin protección (para testing)"
+          }
+        },
+        {
+          "name": "GET Unprotected Current",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/sessions/unprotectedCurrent",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "sessions", "unprotectedCurrent"]
+            },
+            "description": "Usuario actual sin protección (para testing)"
+          }
         }
       ]
     }
@@ -348,7 +556,26 @@
   "variable": [
     {
       "key": "base_url",
-      "value": "http://localhost:8080"
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "type": "string",
+      "description": "ID de usuario obtenido de GET All Users"
+    },
+    {
+      "key": "pet_id",
+      "value": "",
+      "type": "string",
+      "description": "ID de mascota obtenido de GET All Pets"
+    },
+    {
+      "key": "adoption_id",
+      "value": "",
+      "type": "string",
+      "description": "ID de adopción obtenido de GET All Adoptions"
     }
   ]
 }

@@ -5,7 +5,6 @@ import UserDTO from '../dto/User.dto.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'tokenSecretJWT';
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1h';
-const COOKIE_SECRET = process.env.COOKIE_SECRET || 'coderCookieSecret';
 
 const register = async (req, res) => {
     try {
@@ -78,7 +77,7 @@ const login = async (req, res) => {
     res.cookie('coderCookie', token, { 
         maxAge: 3600000,
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'development',
+        secure: false, 
         signed: true
     }).send({ 
         status: "success", 
@@ -147,7 +146,7 @@ const unprotectedLogin = async (req, res) => {
     res.cookie('unprotectedCookie', token, { 
         maxAge: 3600000,
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'development'
+        secure: false
     }).send({ 
         status: "success", 
         message: "Unprotected Logged in" 

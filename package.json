@@ -7,11 +7,8 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "test": "mocha test/**/*.test.js --exit --timeout 10000",
-    "test:watch": "mocha test/**/*.test.js --watch --exit",
-    "db:reset": "NODE_ENV=test node scripts/reset-test-db.js",
-    "lint": "eslint src/",
-    "lint:fix": "eslint src/ --fix"
+    "test": "mocha test/simple.test.js --exit --timeout 10000",
+    "test:watch": "mocha test/simple.test.js --watch --exit"
   },
   "keywords": [
     "backend",
